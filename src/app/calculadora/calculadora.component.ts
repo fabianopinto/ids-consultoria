@@ -10,7 +10,7 @@ export class CalculadoraComponent implements OnInit {
 
   dividendo: number;
   divisor: number;
-  quociente: number;
+  resultado: string;
 
   constructor(private calculoService: CalculoService) { }
 
@@ -18,6 +18,17 @@ export class CalculadoraComponent implements OnInit {
   }
 
   calcularDivisao() {
-    this.quociente = this.calculoService.dividir(this.dividendo, this.divisor);
+    try {
+      this.resultado = String(this.calculoService.dividir(this.dividendo, this.divisor));
+      if (this.resultado.match(/\de/)) {
+        this.resultado = 'resultado inválido';
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  isEntradaNegativos() {
+    return this.dividendo < 0 || this.divisor < 0;
   }
 }

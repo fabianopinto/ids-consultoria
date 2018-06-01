@@ -70,13 +70,13 @@ describe('CalculadoraComponent', () => {
   it('operação deve ser registrar resultado', () => {
     component.dividendo = 75;
     component.divisor = 5;
-    component.quociente = -1;
+    component.resultado = 'r';
     component.calcularDivisao();
-    expect(component.quociente).not.toEqual(-1);
+    expect(component.resultado).not.toEqual('r');
   });
 
   it('resultado da operação deve ser apresentado', () => {
-    component.quociente = 15;
+    component.resultado = '15';
     fixture.detectChanges();
     expect(resultado).toBeTruthy();
     expect(resultado.nativeElement.innerText).toEqual('15');
@@ -87,5 +87,32 @@ describe('CalculadoraComponent', () => {
     spyOn(service, 'dividir');
     component.calcularDivisao();
     expect(service.dividir).toHaveBeenCalled();
+  });
+
+  it('tratar erro no caso de divisão por zero', () => {
+    expect(() => {
+      component.divisor = 0;
+      component.calcularDivisao();
+    }).not.toThrow();
+  });
+
+  it('bloquear botão "Dividir" quando dividendo é negativo', () => {
+    component.dividendo = -75;
+    fixture.detectChanges();
+    expect(botao.nativeElement.disabled).toBeTruthy();
+  });
+
+  it('bloquear botão "Dividir" quando divisor é negativo', () => {
+    component.divisor = -5;
+    fixture.detectChanges();
+    expect(botao.nativeElement.disabled).toBeTruthy();
+  });
+
+  it('no caso de resultado exponencial apresentar "resultado inválido"', () => {
+    component.dividendo = 75;
+    component.divisor = 500000000000;
+    component.calcularDivisao();
+    fixture.detectChanges();
+    expect(resultado.nativeElement.innerText).toEqual('resultado inválido');
   });
 });

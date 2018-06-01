@@ -176,6 +176,61 @@ Commit das implementações conforme requisitos:
     src/app/calculadora/calculadora.component.ts      | 23 +++++++++++++++++++++++
     8 files changed, 202 insertions(+), 8 deletions(-)
 
+### Erro detectado e requisitos adicionais
+
+Erro na operação quando número divisor é zero:
+
+    ERROR Error: divisão por zero
+        at CalculoService.push../src/app/services/calculo.service.ts.CalculoService.dividir (main.js:263)
+        at CalculadoraComponent.push../src/app/calculadora/calculadora.component.ts.CalculadoraComponent.calcularDivisao (main.js:220)
+        at Object.eval [as handleEvent] (ng:///AppModule/CalculadoraComponent.ngfactory.js:115)
+        at handleEvent (vendor.js:40815)
+        at callWithDebugContext (vendor.js:41912)
+        at Object.debugHandleEvent [as handleEvent] (vendor.js:41615)
+        at dispatchEvent (vendor.js:38269)
+        at vendor.js:38713
+        at HTMLButtonElement.<anonymous> (vendor.js:55493)
+        at ZoneDelegate.push../node_modules/zone.js/dist/zone.js.ZoneDelegate.invokeTask (polyfills.js:2743)
+
+9. Tratamento de erro "divisão por zero" na execução do cálculo;
+10. Bloquear a entrada de números negativos, desabilitando o botão "Dividir";
+11. No caso de resultado exponencial, apresentar o texto "resultado inválido".
+
+Concluídos os ajustes e requisitos adicionais:
+
+> `ng test`
+
+    18 specs, 0 failures
+    AppComponent
+        should create the app
+    CalculadoraComponent
+        should create
+        deve incluir entradas para dividendo e divisor
+        entrada de dividendo reflete no modelo
+        entrada divisor reflete no modelo
+        deve incluir um botão "Dividir"
+        botão "Dividir" deve executar o cálculo
+        operação deve ser registrar resultado
+        resultado da operação deve ser apresentado
+        utilizar o serviço "CalculoService" na operação
+        tratar erro no caso de divisão por zero
+        bloquear botão "Dividir" quando dividendo é negativo
+        bloquear botão "Dividir" quando divisor é negativo
+        no caso de resultado exponencial apresentar "resultado inválido"
+    CalculoService
+        should be created
+        deve existir um método "dividir"
+        dividir dois números e retornar o quociente
+        lançar exceção "divisão por zero"
+
+> `git commit -a -m 'ajustes e requisitos adicionais'`
+
+    README.md                                         | 55 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    src/app/calculadora/calculadora.component.html    |  4 ++--
+    src/app/calculadora/calculadora.component.spec.ts | 33 ++++++++++++++++++++++++++++++---
+    src/app/calculadora/calculadora.component.ts      | 15 +++++++++++++--
+    4 files changed, 100 insertions(+), 7 deletions(-)
+
 
 ---
 
