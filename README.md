@@ -231,6 +231,69 @@ Concluídos os ajustes e requisitos adicionais:
     src/app/calculadora/calculadora.component.ts      | 15 +++++++++++++--
     4 files changed, 100 insertions(+), 7 deletions(-)
 
+### Requisitos componente 2
+
+12. Implementar serviço 'MensagemService' para troca de strings entre componentes;
+13. Componente 'Calculadora' deve produzir mensagens em erros na execução de cálculos;
+14. Implementar componente 'Mensagem' para apresentar mensagens de alerta;
+15. Componente 'Mensagem' deve apresentar alertas recebidos no serviço 'MensagemService';
+
+Criação e implementação de serviço e componente, conforme especificação:
+
+> `ng generate service services/mensagem`
+
+> `ng generate component mensagem`
+
+> `ng test`
+
+    26 specs, 0 failures
+    AppComponent
+        should create the app
+    CalculadoraComponent
+        should create
+        deve incluir entradas para dividendo e divisor
+        entrada de dividendo reflete no modelo
+        entrada divisor reflete no modelo
+        deve incluir um botão "Dividir"
+        botão "Dividir" deve executar o cálculo
+        operação deve ser registrar resultado
+        resultado da operação deve ser apresentado
+        utilizar o serviço "CalculoService" na operação
+        tratar erro no caso de divisão por zero
+        bloquear botão "Dividir" quando dividendo é negativo
+        bloquear botão "Dividir" quando divisor é negativo
+        no caso de resultado exponencial apresentar "resultado inválido"
+        deve produzir mensagens para serviço "MensagemService"
+    MensagemComponent
+        should create
+        mensagem deve ser apresentada
+        deve consumir e apresentar mensagens do serviço "MensagemService"
+    CalculoService
+        should be created
+        deve existir um método "dividir"
+        dividir dois números e retornar o quociente
+        lançar exceção "divisão por zero"
+    MensagemService
+        should be created
+        deve implementar "next" para produção de mensagens
+        deve implementar "subscribe" para consumir mensagens
+        deve fazer a troca de mensagens
+
+> `git commit -a -m 'implementação do componente "Mensagem"'`
+
+    README.md                                         | 63 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    src/app/app.component.html                        |  1 +
+    src/app/app.module.ts                             |  4 +++-
+    src/app/calculadora/calculadora.component.spec.ts | 13 +++++++++++--
+    src/app/calculadora/calculadora.component.ts      |  8 ++++++--
+    src/app/mensagem/mensagem.component.css           |  6 ++++++
+    src/app/mensagem/mensagem.component.html          |  3 +++
+    src/app/mensagem/mensagem.component.spec.ts       | 41 +++++++++++++++++++++++++++++++++++++++++
+    src/app/mensagem/mensagem.component.ts            | 21 +++++++++++++++++++++
+    src/app/services/mensagem.service.spec.ts         | 30 ++++++++++++++++++++++++++++++
+    src/app/services/mensagem.service.ts              |  7 +++++++
+    11 files changed, 181 insertions(+), 5 deletions(-)
+
 
 ---
 

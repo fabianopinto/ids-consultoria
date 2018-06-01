@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CalculoService } from '../services/calculo.service';
+import { MensagemService } from '../services/mensagem.service';
 
 @Component({
   selector: 'app-calculadora',
@@ -12,7 +13,9 @@ export class CalculadoraComponent implements OnInit {
   divisor: number;
   resultado: string;
 
-  constructor(private calculoService: CalculoService) { }
+  constructor(
+    private calculoService: CalculoService,
+    private mensagemService: MensagemService) { }
 
   ngOnInit() {
   }
@@ -24,7 +27,8 @@ export class CalculadoraComponent implements OnInit {
         this.resultado = 'resultado inválido';
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
+      this.mensagemService.next(error.message);
     }
   }
 

@@ -1,9 +1,10 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { CalculadoraComponent } from './calculadora.component';
-import { DebugElement } from '@angular/core';
 import { CalculoService } from '../services/calculo.service';
+import { MensagemService } from '../services/mensagem.service';
+import { CalculadoraComponent } from './calculadora.component';
 
 describe('CalculadoraComponent', () => {
   let component: CalculadoraComponent;
@@ -114,5 +115,13 @@ describe('CalculadoraComponent', () => {
     component.calcularDivisao();
     fixture.detectChanges();
     expect(resultado.nativeElement.innerText).toEqual('resultado inválido');
+  });
+
+  it('deve produzir mensagens para serviço "MensagemService"', () => {
+    const service = TestBed.get(MensagemService);
+    spyOn(service, 'next');
+    component.divisor = 0;
+    component.calcularDivisao();
+    expect(service.next).toHaveBeenCalled();
   });
 });
