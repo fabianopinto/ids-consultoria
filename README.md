@@ -85,6 +85,36 @@ Nova execução dos testes:
 
     Executed 0 of 0 specs SUCCESS in 0.003 sec.
 
+### Requisitos iniciais
+
+1. Criar o serviço 'CalculoService' para execução de cálculos matemáticos;
+2. Implementar o método 'dividir', recebendo dois números, dividendo e divisor, e retornando o quociente;
+3. Este método deverá lançar uma exceção 'divisão por zero', caso ocorra.
+
+Criação e implementação do serviço, conforme especificação:
+
+> `ng generate service services/calculo`
+
+> `ng test`
+
+    5 specs, 0 failures
+    AppComponent
+        should create the app
+    CalculoService
+        should be created
+        deve existir um método "dividir"
+        dividir dois números e retornar o quociente
+        lançar exceção "divisão por zero"
+
+Commit das implementações conforme requisitos:
+
+> `git commit -a -m 'implementação de requisitos iniciais'`
+
+    README.md                                | 29 +++++++++++++++++++++++++++++
+    src/app/services/calculo.service.spec.ts | 29 +++++++++++++++++++++++++++++
+    src/app/services/calculo.service.ts      | 16 ++++++++++++++++
+    3 files changed, 74 insertions(+)
+
 
 ---
 
