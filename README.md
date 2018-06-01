@@ -115,6 +115,67 @@ Commit das implementações conforme requisitos:
     src/app/services/calculo.service.ts      | 16 ++++++++++++++++
     3 files changed, 74 insertions(+)
 
+### Requisitos componente 1
+
+4. Criar um componente 'Calculadora' para efetuar divisões;
+5. Incluir duas entradas para números, dividendo e divisor;
+6. Incluir um botão "Dividir" para execução do cálculo;
+7. Apresentar o resultado após o retorno do cálculo;
+8. Utilizar o serviço 'CalculoService' para as operações.
+
+Criação e implementação do componente, conforme especificação:
+
+> `ng generate component calculadora`
+
+> `ng test`
+
+Falha na criação de ambiente para testes:
+
+    Failed: Template parse errors:
+    'app-calculadora' is not a known element:
+    1. If 'app-calculadora' is an Angular component, then verify that it is part of this module.
+    2. If 'app-calculadora' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
+
+Falha com a dependência 'FormsModule':
+
+    Failed: Template parse errors:
+    Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+Concluída implementação do componente Calculadora:
+
+    14 specs, 0 failures
+    AppComponent
+        should create the app
+    CalculadoraComponent
+        should create
+        deve incluir entradas para dividendo e divisor
+        entrada de dividendo reflete no modelo
+        entrada divisor reflete no modelo
+        deve incluir um botão "Dividir"
+        botão "Dividir" deve executar o cálculo
+        operação deve ser registrar resultado
+        resultado deve ser apresentado
+        utilizar o serviço "CalculoService" na operação
+    CalculoService
+        should be created
+        deve existir um método "dividir"
+        dividir dois números e retornar o quociente
+        lançar exceção "divisão por zero"
+
+Commit das implementações conforme requisitos:
+
+> `git commit -a -m 'implementação do componente "Calculadora"'`
+
+    README.md                                         | 61 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    src/app/app.component.html                        |  2 +-
+    src/app/app.component.spec.ts                     |  6 +++---
+    src/app/app.module.ts                             | 11 +++++++----
+    src/app/calculadora/calculadora.component.css     | 13 +++++++++++++
+    src/app/calculadora/calculadora.component.html    |  8 ++++++++
+    src/app/calculadora/calculadora.component.spec.ts | 91 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    src/app/calculadora/calculadora.component.ts      | 23 +++++++++++++++++++++++
+    8 files changed, 202 insertions(+), 8 deletions(-)
+
 
 ---
 

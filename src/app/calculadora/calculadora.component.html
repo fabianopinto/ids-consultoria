@@ -1,0 +1,8 @@
+<div class="calculadora">
+  <input type="number" id="dividendo" [(ngModel)]="dividendo">
+  <input type="number" id="divisor" [(ngModel)]="divisor">
+  <button (click)="calcularDivisao()">
+    Dividir
+  </button>
+  <div id="resultado">{{quociente}}</div>
+</div>
