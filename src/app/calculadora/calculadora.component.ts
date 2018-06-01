@@ -29,6 +29,7 @@ export class CalculadoraComponent implements OnInit {
     } catch (error) {
       console.log(error.message);
       this.mensagemService.next(error.message);
+      this.resultado = '';
     }
   }
 

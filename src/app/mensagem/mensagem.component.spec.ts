@@ -38,4 +38,12 @@ describe('MensagemComponent', () => {
     fixture.detectChanges();
     expect(component.mensagem).toEqual('m');
   });
+
+  it('mensagem deve ser apresentada por apenas 4 segundos', () => {
+    jasmine.clock().install();
+    TestBed.get(MensagemService).next('m');
+    jasmine.clock().tick(4000);
+    expect(component.mensagem).toEqual('');
+    jasmine.clock().uninstall();
+  });
 });

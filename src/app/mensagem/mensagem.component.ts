@@ -15,6 +15,9 @@ export class MensagemComponent implements OnInit {
   ngOnInit() {
     this.mensagemService.subscribe((mensagem) => {
       this.mensagem = mensagem;
+      setTimeout(() => {
+        this.mensagem = '';
+      }, 4000);
     });
   }
 

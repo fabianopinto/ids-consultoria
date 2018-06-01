@@ -6,6 +6,8 @@
 |            | 1h30 (módulos dinâmicos, child routes) |
 | 22/05/2018 | 2h51 (Skype) |
 |            | 2h40 (dependências, template/reacive forms, interfaces/classes) |
+| ../06/2018 |  |
+|            | 8h40 (JSON-instância, exemplos TDD, observable chain) |
 
 ## Resumo 03/05/2018
 
@@ -293,6 +295,73 @@ Criação e implementação de serviço e componente, conforme especificação:
     src/app/services/mensagem.service.spec.ts         | 30 ++++++++++++++++++++++++++++++
     src/app/services/mensagem.service.ts              |  7 +++++++
     11 files changed, 181 insertions(+), 5 deletions(-)
+
+### Requisitos finais
+
+16. Quando houver qualquer erro no cálculo o resultado deve estar limpo;
+17. Mensagem deverá ser apresentada por apenas 4 segundos;
+18. Incluir Mozilla Firefox na bateria de testes.
+
+> `npm install karma-firefox-launcher --save-def`
+
+> `ng test`
+
+    28 specs, 0 failures
+    AppComponent
+        should create the app
+    CalculadoraComponent
+        should create
+        deve incluir entradas para dividendo e divisor
+        entrada de dividendo reflete no modelo
+        entrada divisor reflete no modelo
+        deve incluir um botão "Dividir"
+        botão "Dividir" deve executar o cálculo
+        operação deve ser registrar resultado
+        resultado da operação deve ser apresentado
+        utilizar o serviço "CalculoService" na operação
+        tratar erro no caso de divisão por zero
+        bloquear botão "Dividir" quando dividendo é negativo
+        bloquear botão "Dividir" quando divisor é negativo
+        no caso de resultado exponencial apresentar "resultado inválido"
+        deve produzir mensagens para serviço "MensagemService"
+        deve limpar o resultado no caso de erro na operação
+    MensagemComponent
+        should create
+        mensagem deve ser apresentada
+        deve consumir e apresentar mensagens do serviço "MensagemService"
+        mensagem deve ser apresentada por apenas 4 segundos
+    CalculoService
+        should be created
+        deve existir um método "dividir"
+        dividir dois números e retornar o quociente
+        lançar exceção "divisão por zero"
+    MensagemService
+        should be created
+        deve implementar "next" para produção de mensagens
+        deve implementar "subscribe" para consumir mensagens
+        deve fazer a troca de mensagens
+
+> `ng e2e`
+
+    workspace-project App
+        ✓ deve executar divisão simples
+        ✓ deve apresentar "resultado inválido" para resultado exponencial
+        ✓ deve apresentar mensagem de erro para divisão por zero
+    Executed 3 of 3 specs SUCCESS in 8 secs.
+
+> `git commit -a -m 'implementação de requisitos finais'`
+
+    README.md                                         | 67 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    e2e/src/app.e2e-spec.ts                           | 26 ++++++++++++++++++++++++++
+    e2e/src/app.po.ts                                 | 27 +++++++++++++++++++++++++--
+    package-lock.json                                 |  5 +++++
+    package.json                                      |  1 +
+    src/app/calculadora/calculadora.component.spec.ts |  7 +++++++
+    src/app/calculadora/calculadora.component.ts      |  1 +
+    src/app/mensagem/mensagem.component.spec.ts       |  8 ++++++++
+    src/app/mensagem/mensagem.component.ts            |  3 +++
+    src/karma.conf.js                                 |  5 +++--
+    10 files changed, 132 insertions(+), 4 deletions(-)
 
 
 ---

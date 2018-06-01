@@ -124,4 +124,11 @@ describe('CalculadoraComponent', () => {
     component.calcularDivisao();
     expect(service.next).toHaveBeenCalled();
   });
+
+  it('deve limpar o resultado no caso de erro na operação', () => {
+    component.resultado = 'r';
+    component.divisor = 0;
+    component.calcularDivisao();
+    expect(component.resultado).toEqual('');
+  });
 });
